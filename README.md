@@ -1,28 +1,33 @@
 # price-tracker
-This is the GitHub mirror of an application for tracking prices at German petrol stations, written in Go.
+GitHub mirror of an application for tracking prices at German petrol stations, written in Go.
 
 ### First Interaction
 
-Build Dockerfile with
+Build Docker image from Dockerfile with
 ```sh
 docker build --tag price_tracker .
 ```
 
-Navigate to preferred mount-binding directory and initialize SQLite database with 
+Navigate to preferred mount-binding directory. Make script executable and initialize SQLite database with 
 ```sh
-./setup_db.sh
+chmod +x init_db.sh
+./init_db.sh
 ```
 
 Finally, run application with 
-```
+```sh
 docker run --rm -d \
     -v /tmp/price-tracker:/app/db \
     -e DB_PATH="./db/data.db" \
     -e API_KEY="..." \
     price_tracker
 ```
-where `DB_PATH` is the path to the SQLite database in the container, which depends on the mounting point (see `-v`).
-Moreover, `API_KEY` is the [Tankerkönig](https://creativecommons.tankerkoenig.de/) Creative Commons API key.
+
+Note: 
+- ensure to specify an **absolute** path on the host-side of the mount-binding statement (`-v`, left side)!
+- `DB_PATH` is the path to the SQLite database in the container, which depends on the mounting point inside the container (`-v`, right side)
+- `API_KEY` is the [Tankerkönig](https://creativecommons.tankerkoenig.de/) Creative Commons API key
+
 
 Note the other (optional) flags:
 - `--rm`: automatically remove the container when it exits
