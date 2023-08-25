@@ -39,3 +39,12 @@ vendor/
 .DS_Store
 .AppleDouble
 .LSOverride
+
+# SQLite
+.db
+
+# logs
+.log
+
+# run.sh, as due to environment variables
+run.sh
