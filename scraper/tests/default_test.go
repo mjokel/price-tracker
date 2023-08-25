@@ -1,7 +1,7 @@
 package tests
 
 import (
-	U "crawler/utils"
+	U "scraper/utils"
 	"testing"
 )
 
