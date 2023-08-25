@@ -1,5 +1,5 @@
 # price-tracker
-Go application for tracking prices at German petrol stations
+This is the GitHub mirror of an application for tracking prices at German petrol stations, written in Go.
 
 ### First Interaction
 
@@ -16,12 +16,12 @@ Navigate to preferred mount-binding directory and initialize SQLite database wit
 Finally, run application with 
 ```
 docker run --rm -d \
-    -v /tmp/mydb:/app/db \
+    -v /tmp/price-tracker:/app/db \
     -e DB_PATH="./db/data.db" \
     -e API_KEY="..." \
     price_tracker
 ```
-where `DB_PATH` is the path to the SQLite database in the container, which depends on the mounting point (see `-b`).
+where `DB_PATH` is the path to the SQLite database in the container, which depends on the mounting point (see `-v`).
 Moreover, `API_KEY` is the [Tankerkönig](https://creativecommons.tankerkoenig.de/) Creative Commons API key.
 
 Note the other (optional) flags:
