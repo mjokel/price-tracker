@@ -4,18 +4,18 @@ GitHub mirror of an application for tracking prices at German petrol stations, w
 ### First Interaction
 
 Build Docker image from Dockerfile with
-```sh
+```bash
 docker build --tag price_tracker .
 ```
 
 Navigate to preferred mount-binding directory. Make script executable and initialize SQLite database with 
-```sh
+```bash
 chmod +x init_db.sh
 ./init_db.sh
 ```
 
 Finally, run application with 
-```sh
+```bash
 docker run --rm -d \
     -v /tmp/price-tracker:/app/db \
     -e DB_PATH="./db/data.db" \
@@ -35,7 +35,7 @@ Note the other (optional) flags:
 - (`-i`: keeps STDIN open even if not attached ("interactive"))
 - (`-t`: allocates a pseudo-TTY and allows the interaction with the running container ("tty"))
 
-To check what is going on inside the container, use the following command and with the returned `id`:
-```
+To check the logs (`logs.log`) and what is going on inside the container, use the following command and with the returned `id`:
+```bash
 docker exec -it <id> /bin/bash
 ```
