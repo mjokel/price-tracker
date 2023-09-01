@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # SQLite database name
-DATABASE="data.db"
+DATABASE="data-XXX.db"
 
 # check if sqlite3 is installed
 if ! command -v sqlite3 &> /dev/null; then
@@ -37,5 +37,9 @@ CREATE TABLE IF NOT EXISTS prices (
 
 .quit
 EOF
+
+# enable WAL journaling mode for concurrent n-read:1-write access
+# see https://til.simonwillison.net/sqlite/enabling-wal-mode
+sqlite3 $DATABASE 'PRAGMA journal_mode=WAL;'
 
 echo "Initialized tables 'stations' and 'prices'!"
