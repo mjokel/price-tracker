@@ -1,4 +1,6 @@
 -- update timestamp only
+BEGIN TRANSACTION;
+
 UPDATE prices
 SET timestamp = ?
 WHERE id = (
@@ -8,6 +10,8 @@ WHERE id = (
     ORDER BY id DESC
     LIMIT 1
 );
+
+COMMIT;
 
 -- UPDATE prices
 -- SET timestamp = CURRENT_TIMESTAMP
